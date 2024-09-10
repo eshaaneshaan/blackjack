@@ -1,18 +1,32 @@
 extends AnimatedSprite2D
 
-func dupl(n, f, p):
-	var card2 = AnimatedSprite2D.new()
-	card2.sprite_frames = $".".sprite_frames
-	card2.animation = $".".animation
-	card2.name = n
-	card2.frame = f
-	card2.position = p
-	add_child(card2)
+var pts
 
 func _ready():
-	frame = 52
-	dupl("card3", 49, Vector2(-107,-323))
-	
+	frame = randi_range(0,51)
 
 func _process(delta):
-	pass
+	match(frame):
+		[0,13,26,39]:
+			if ($"../Ace".value =="1"):
+				pts+=1
+			else:
+				pts+=11
+		[1,14,27,40]:
+			pts += 2
+		[2,15,28,41]:
+			pts += 3
+		[3,16,29,42]:
+			pts += 4
+		[4,17,30,43]:
+			pts += 5
+		[5,18,31,44]:
+			pts += 6
+		[6,19,32,45]:
+			pts += 7
+		[7,20,33,46]:
+			pts += 8
+		[8,21,34,47]:
+			pts += 9
+		[9,10,11,12,22,23,24,25,35,36,37,38,48,49,50,51]:
+			pts += 10

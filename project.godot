@@ -18,6 +18,8 @@ boot_splash/image="res://pixil-frame-0.png"
 
 [display]
 
+window/size/viewport_width=2000
+window/size/viewport_height=1300
 window/size/resizable=false
 window/size/borderless=true
 

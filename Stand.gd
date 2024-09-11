@@ -20,10 +20,6 @@ func _process(delta):
 	# print("op"+str(op))
 	if (total > 21):
 		lose()
-		
-	
-
-
 func _on_texture_button_pressed():
 	# write money to file
 	$"../Card3".frame = $"../Card3".f
@@ -34,18 +30,19 @@ func _on_texture_button_pressed():
 		lose()
 	else:
 		tie()
-	# get_tree().reload_current_scene() # replace with win/lose condition and then wait 5 seconds and reset with the ending money sum
 
 func win():
 	$"../Label2".text = "You Win!"
 	$"../Label2".show()
 	var file = FileAccess.open("user://money.m", FileAccess.WRITE)
 	file.store_float(float($"../Label/Label".bvalue)*2.0)
+	$"../Label/Label".val2 = int($"../Label/Label".bvalue) * 2
 	await get_tree().create_timer(2).timeout
 	get_tree().reload_current_scene()
 func lose():
 	$"../Label2".text = "You Lose."
 	$"../Label2".show()
+	$"../Label/Label".val2 = 0
 	await get_tree().create_timer(2).timeout
 	get_tree().reload_current_scene()
 func tie():

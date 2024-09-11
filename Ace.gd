@@ -1,6 +1,7 @@
 extends Sprite2D
 
 var value = "1"
+var timesPressed = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

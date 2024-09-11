@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://da08301jdp7db"]
+[gd_scene load_steps=73 format=3 uid="uid://da08301jdp7db"]
 
 [ext_resource type="Script" path="res://init_bg.gd" id="1_itna4"]
 [ext_resource type="Texture2D" uid="uid://bdvnrp202h56e" path="res://clubs/tile000.png" id="2_05hi8"]
@@ -247,6 +247,9 @@ default_font_size = 40
 [sub_resource type="Theme" id="Theme_oqjef"]
 default_font_size = 130
 
+[sub_resource type="Theme" id="Theme_ibab4"]
+default_font_size = 280
+
 [node name="Node2D" type="Node2D"]
 
 [node name="background" type="ColorRect" parent="."]
@@ -277,7 +280,7 @@ sprite_frames = SubResource("SpriteFrames_6lcwr")
 script = ExtResource("54_jxl2m")
 
 [node name="Stand" type="Sprite2D" parent="."]
-position = Vector2(223, 1255)
+position = Vector2(209.36, 1255)
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("56_35o00")
 script = ExtResource("57_hlxag")
@@ -355,22 +358,38 @@ theme = SubResource("Theme_34uny")
 text = "MONEY: 100"
 script = ExtResource("64_fap1y")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -26.0
+offset_top = -69.0
+offset_right = 2080.0
+offset_bottom = 1361.0
+color = Color(0, 0.501961, 0.501961, 1)
+
 [node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 734.0
+offset_left = 793.0
 offset_top = 550.0
-offset_right = 1134.0
+offset_right = 1193.0
 offset_bottom = 625.0
 theme = SubResource("Theme_5mddl")
 placeholder_text = "                $$$"
 script = ExtResource("65_vkawo")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 734.0
+offset_left = 790.0
 offset_top = 640.0
-offset_right = 1137.0
+offset_right = 1193.0
 offset_bottom = 826.0
 theme = SubResource("Theme_oqjef")
 text = "BEGIN"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 470.0
+offset_right = 1992.0
+offset_bottom = 853.0
+theme = SubResource("Theme_ibab4")
+text = "YOU XXXX"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Stand/TextureButton" to="Stand" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="Hit/TextureButton" to="Hit" method="_on_texture_button_pressed"]

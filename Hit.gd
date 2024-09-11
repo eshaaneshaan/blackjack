@@ -1,5 +1,6 @@
 extends Sprite2D
 
+var pts = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,6 +12,10 @@ func _process(delta):
 
 func _on_texture_button_pressed():
 	if ($"../Ace".value == "11"):
-		$"../Label".text += "\n" + str(randi_range(2,11))
+		var a = randi_range(2,11)
+		pts += a
+		$"../Label".text += "\n" + str(a)
 	else:
-		$"../Label".text += "\n" + str(randi_range(1,10))
+		var a = randi_range(1,10)
+		pts += a
+		$"../Label".text += "\n" + str(a)

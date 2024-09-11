@@ -1,16 +1,57 @@
 extends Sprite2D
 
+var total = 0
+var op = 0
+var mon = 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$"../Label2".hide()
+	# var file = FileAccess.open("user://money.txt", FileAccess.WRITE)
+	# var money = ($"../Label/Label".bvalue)
+	# file.store_var(float(money))
+	# init money file
+	#print("this: "+str(float("128")+10))
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	# if total points > 21, check here, and then lose and if no lose then win
+	total = $"../Hit".pts + $"../Card1".pts + $"../Card2".pts
+	op = $"../Card3".pts + $"../Card4".pts
+	# print("total"+str(total))
+	# print("op"+str(op))
+	if (total > 21):
+		lose()
+		
+	
 
 
 func _on_texture_button_pressed():
+	# write money to file
 	$"../Card3".frame = $"../Card3".f
-	get_tree().reload_current_scene() # replace with win/lose condition and then wait 5 seconds and reset with the ending money sum
+	await get_tree().create_timer(1).timeout
+	if (total > op):
+		win()
+	elif (total < op):
+		lose()
+	else:
+		tie()
+	# get_tree().reload_current_scene() # replace with win/lose condition and then wait 5 seconds and reset with the ending money sum
+
+func win():
+	$"../Label2".text = "You Win!"
+	$"../Label2".show()
+	var file = FileAccess.open("user://money.m", FileAccess.WRITE)
+	file.store_float(float($"../Label/Label".bvalue)*2.0)
+	await get_tree().create_timer(2).timeout
+	get_tree().reload_current_scene()
+func lose():
+	$"../Label2".text = "You Lose."
+	$"../Label2".show()
+	await get_tree().create_timer(2).timeout
+	get_tree().reload_current_scene()
+func tie():
+	$"../Label2".text = "You Tied."
+	$"../Label2".show()
+	var file = FileAccess.open("user://money.m", FileAccess.WRITE)
+	file.store_float(float($"../Label/Label".bvalue))
+	await get_tree().create_timer(2).timeout
+	get_tree().reload_current_scene()
